@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, ElementRef, Inject} from '@angular/core';
+import {ClickService} from '../click.service';
 
 @Component({
   selector: 'app-child1',
@@ -6,5 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./child1.component.scss']
 })
 export class Child1Component {
+  constructor(
+    private _clickService: ClickService,
+    private _element: ElementRef<HTMLElement>
+  ) {}
 
+  onClick(): void {
+    this._clickService.click.next(this._element.nativeElement.tagName.toLowerCase())
+  }
 }

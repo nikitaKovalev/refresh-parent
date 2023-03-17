@@ -1,5 +1,5 @@
 <div class="container">
-  Root component, refreshed from: {{ 'fromName' }} {{ 'fromCount' }}
+  Root component, refreshed from: {{ (currentComponent | async)?.['name'] || 'Not selected'}}: {{ (currentComponent | async)?.['count'] || 0}}
 
   <div class="content">
     <app-child1></app-child1>
