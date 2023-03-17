@@ -1,5 +1,7 @@
 import { Component, Inject } from '@angular/core';
-import { AppService } from "../app.service";
+import { Refresher, REFRESHER } from "../refresher";
+import { Subject } from "rxjs";
+import { Data, DATA } from "../getData";
 
 @Component({
   selector: 'app-child3',
@@ -8,15 +10,14 @@ import { AppService } from "../app.service";
 })
 export class Child3Component {
   name = 'Child 3';
-  count = 0;
+  private _count = 0;
 
   constructor(
-    @Inject(AppService) private readonly _service: AppService
-  ) {
-  }
+    @Inject(REFRESHER) private readonly _refresher$: Subject<Refresher>,
+    @Inject(DATA) readonly data$: Subject<Data>)
+  {}
 
-  numberClick(): void {
-    this.count = this.count + 1;
-    this._service.countClick(this.name, this.count);
+  onClick() {
+    this._refresher$.next({name: this.name, count: this._count++});
   }
 }

@@ -1,5 +1,8 @@
 <div class="container">
-  Root component, refreshed from: {{ service.getName }} {{ service.getCount }}
+  Root component, refreshed from:
+  <ng-container *ngIf="refresher$ | async as refresher">
+    {{ refresher.name }} {{ refresher.count }}
+  </ng-container>
 
   <div class="content">
     <app-child1></app-child1>

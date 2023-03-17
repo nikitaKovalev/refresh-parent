@@ -1,7 +1,11 @@
 <div class="container">
   {{ name }}
 
-  <button (click)="numberClick()">Refresh</button>
+  <button (click)="onClick()">Refresh</button>
+
+  <p *ngIf="data$ | async as data">
+    {{ data.name }}
+  </p>
 
   <div class="content">
     <app-grand-child2></app-grand-child2>
