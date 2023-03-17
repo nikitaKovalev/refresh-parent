@@ -1,5 +1,6 @@
 import {Component, Inject} from '@angular/core';
-import {Observable} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
+import {CLICK_TOKEN, IClickToken} from './ckick-token';
 import {ClickService} from './click.service';
 
 @Component({
@@ -14,5 +15,6 @@ export class AppComponent {
 
   constructor(
     @Inject(ClickService) private _clickService: ClickService,
+    // @Inject(CLICK_TOKEN) private _clickToken$: new Subject<IClickToken>(),
   ) {}
 }
