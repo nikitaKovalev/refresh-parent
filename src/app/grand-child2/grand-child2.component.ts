@@ -1,4 +1,6 @@
-import {Component, ElementRef} from '@angular/core';
+import {Component, ElementRef, Inject} from '@angular/core';
+import {Subject} from 'rxjs';
+import {CLICK_TOKEN, IClickToken} from '../ckick-token';
 import {ClickService} from '../click.service';
 
 @Component({
@@ -9,10 +11,13 @@ import {ClickService} from '../click.service';
 export class GrandChild2Component {
   constructor(
     private _clickService: ClickService,
-    private _element: ElementRef<HTMLElement>
+    private _element: ElementRef<HTMLElement>,
+    @Inject(CLICK_TOKEN) readonly clickToken$: Subject<IClickToken>,
   ) {}
 
   onClick(): void {
-    this._clickService.click.next(this._element.nativeElement.tagName.toLowerCase())
+    const name = this._element.nativeElement.tagName.toLowerCase();
+    this.clickToken$.next({name})
+    this._clickService.click.next(name)
   }
 }

@@ -1,5 +1,8 @@
 <div class="container">
   Child 1
+  <ng-container *ngIf="clickToken$ | async as token">
+    <p>Clicked components: {{token.name}}</p>
+  </ng-container>
 
   <button (click)="onClick()">Refresh</button>
 
