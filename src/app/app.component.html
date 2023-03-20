@@ -1,14 +1,14 @@
 <div class="container">
   Root component, refreshed from:
-  <ng-container *ngIf="counterData$ as counterData">
-    {{counterData.getValue().type}} {{counterData.getValue().count}}
+  <ng-container *ngIf="counter$ | async as counterData">
+    {{counterData.type}} {{counterData.count}}
   </ng-container>
 
   <div class="content">
-    <app-child1></app-child1>
+    <app-child1 [data]="data"></app-child1>
 
-    <app-child2></app-child2>
+    <app-child2 [data]="data"></app-child2>
 
-    <app-child3></app-child3>
+    <app-child3 [data]="data"></app-child3>
   </div>
 </div>

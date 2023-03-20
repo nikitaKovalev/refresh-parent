@@ -1,5 +1,7 @@
-import {Component} from '@angular/core';
-import {CounterService} from '../services/counter.service';
+import {Component, Inject, Input} from '@angular/core';
+import {Subject} from 'rxjs';
+import {COUNTER} from '../counter';
+import {ICounter} from '../interfaces/counter.interface';
 
 @Component({
   selector: 'app-child3',
@@ -7,12 +9,12 @@ import {CounterService} from '../services/counter.service';
   styleUrls: ['./child3.component.scss'],
 })
 export class Child3Component {
-  constructor(private _counterService: CounterService) {}
-
-  title = 'app-child3';
+  @Input() data: any;
   count = 1;
 
+  constructor(@Inject(COUNTER) private counter$: Subject<ICounter>) {}
+
   refresh(): void {
-    this._counterService.refresh(this.title, this.count++);
+    this.counter$.next({type: this.constructor.name, count: this.count++});
   }
 }

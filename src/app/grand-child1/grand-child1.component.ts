@@ -1,5 +1,8 @@
-import {Component} from '@angular/core';
-import {CounterService} from '../services/counter.service';
+import {Component, Inject} from '@angular/core';
+import {Subject} from 'rxjs';
+import {Child1Component} from '../child1/child1.component';
+import {COUNTER} from '../counter';
+import {ICounter} from '../interfaces/counter.interface';
 
 @Component({
   selector: 'app-grand-child1',
@@ -7,12 +10,14 @@ import {CounterService} from '../services/counter.service';
   styleUrls: ['./grand-child1.component.scss'],
 })
 export class GrandChild1Component {
-  constructor(private _counterService: CounterService) {}
-
-  title = 'grand-child1';
   count = 1;
 
+  constructor(
+    @Inject(COUNTER) private counter$: Subject<ICounter>,
+    @Inject(Child1Component) public parent: Child1Component,
+  ) {}
+
   refresh(): void {
-    this._counterService.refresh(this.title, this.count++);
+    this.counter$.next({type: this.constructor.name, count: this.count++});
   }
 }
