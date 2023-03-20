@@ -1,5 +1,9 @@
 <div class="container">
   Grand grand child 2
 
+  <p *ngIf="controller.data as data">
+    This {{data.name}} was clicked
+  </p>
+
   <button (click)="null">Refresh</button>
 </div>

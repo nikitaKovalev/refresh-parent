@@ -5,10 +5,10 @@
   </ng-container>
 
   <div class="content">
-    <app-child1></app-child1>
+    <app-child1 [data]="data$ | async"></app-child1>
 
-    <app-child2></app-child2>
+    <app-child2 [data]="data$ | async"></app-child2>
 
-    <app-child3></app-child3>
+    <app-child3 [data]="data$ | async"></app-child3>
   </div>
 </div>

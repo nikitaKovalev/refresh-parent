@@ -12,6 +12,7 @@ import { GrandChild3Component } from './grand-child3/grand-child3.component';
 import { GrandGrandChild1Component } from './grand-grand-child1/grand-grand-child1.component';
 import { GrandGrandChild2Component } from './grand-grand-child2/grand-grand-child2.component';
 import { GrandGrandChild3Component } from './grand-grand-child3/grand-grand-child3.component';
+import { ControllerDirective } from './controller.directive';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { GrandGrandChild3Component } from './grand-grand-child3/grand-grand-chil
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ControllerDirective
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { Refresher, REFRESHER, REFRESHER_PROVIDER } from './refresher';
-import { Subject } from 'rxjs';
+import { map, share, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +10,11 @@ import { Subject } from 'rxjs';
 })
 export class AppComponent {
   title = 'refresh-parent';
+
+  readonly data$ = this.refresher$.pipe(
+    map(({name}) => ({name})),
+    share(),
+  );
 
   constructor(@Inject(REFRESHER) readonly refresher$: Subject<Refresher>) {}
 }
